@@ -10,3 +10,6 @@ Review.create( rating: 5 )
 Review.create( rating: 7 )
 Review.create( rating: 2 )
 Review.create( rating: 6 )
+
+Piet = User.create( email: 'piet@ex.com', password: '11112222' )
+Santa = User.create( email: 'santa@ex.com', password: '11112222' )

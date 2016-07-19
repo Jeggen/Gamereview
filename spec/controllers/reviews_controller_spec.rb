@@ -1,79 +1,48 @@
 require 'rails_helper'
 
-describe ReviewsController do
+RSpec.describe ReviewsController, type: :controller do
+  let(:user) { User.create(email: "poster@social.com", password: "12345678") }
+
+  let(:valid_attributes) do
+    { rating: 3,
+      user: user }
+  end
+
+  let(:invalid_attributes) do
+    { rating: ""}
+  end
+
+  let!(:a_review) { Review.create! valid_attributes }
 
   describe "GET #index" do
-    it "assigns a new review to @reviews" do
-      review = Review.create!( rating: 4 )
+    it "is not accessible when not logged in" do
+      get :index
+      expect(response).to redirect_to new_user_session_path
+    end
 
-    get :index
+    context "when logged in" do
+      login_user
 
-    expect(assigns(:reviews)).to eq([review])
-    assert_response :success
+      it "assigns all reviews as @reviews" do
+        get :index
+        expect(assigns(:reviews)).to eq([a_review])
+      end
     end
   end
 end
-#
-# require 'rails_helper'
-#
-# RSpec.describe ReviewsController, type: :controller do
-#   let(:user) { User.create(email: "bla@bla.com", password: "11112222") }
-#
-#   let(:valid_attributes) do
-#     { rating: 4, user: user }
-#   end
-#
-#   let(:invalid_attributes) do
-#     { rating: "" }
-#   end
-#
-#   let!(:a_review) { Review.create! valid_attributes }
-#
-#   describe "GET #index" do
-#     it "is not accessible when not logged in" do
-#       get :index
-#       expect(response).to redirect_to new_user_session_path
-#     end
-#
-#     context "when logged in" do
-#       login_user
-#
-#       it "assigns all reviews as @reviews" do
-#         get :index
-#         expect(assigns(:posts)).to eq([a_post])
-#       end
-#     end
-#   end
 
-  # describe "GET #show" do
-  #   it "assigns @review" do
-  #     review = Review.create(rating: 2)
-  #
-  #     get :show, id: review.id
-  #
-  #     expect(assigns(:review)).to eq(review)
-  #   end
-  # end
-#   describe "GET #new" do
-#     it "assigns a new review as @review" do
-#       get :new
+# class ReviewsControllerTest < ActionController::TestCase
 #
-#       expect(assigns(:review)).to be_a_new(Review)
-#     end
+#   test "index with token authentication via query params" do
+#     get :index, { user_email: "alice@example.com", user_token: "1G8_s7P-V-4MGojaKD7a" }
+#     assert_response :success
 #   end
 #
-#   describe "GET #edit" do
-#       let(:review) { Review.create( rating: 7) }
+#   test "index with token authentication via request headers" do
+#     @request.headers['X-User-Email'] = "alice@example.com"
+#     @request.headers['X-User-Token'] = "1G8_s7P-V-4MGojaKD7a"
 #
-#     before do
-#       get :edit, id: review.id
-#     end
-#
-#     it "assigns the requested review as @review" do
-#       expect(assigns(:review)).to eq(review)
-#     end
-#     it "renders the edit template" do
-#       expect(response).to render_template("edit")
-#     end
+#     get :index
+#     assert_response :success
 #   end
 # end
