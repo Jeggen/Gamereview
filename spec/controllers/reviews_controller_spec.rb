@@ -4,11 +4,11 @@ describe ReviewsController do
 
   describe "GET #index" do
     it "assigns a new review to @reviews" do
-      review = Review.create( rating: 4 )
+      review = Review.create!( rating: 4 )
 
     get :index
 
-    expect(assigns(:review)).to eq([review])
+    expect(assigns(:reviews)).to eq([review])
     assert_response :success
     end
   end
