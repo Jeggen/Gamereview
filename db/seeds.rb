@@ -1,7 +1,9 @@
-user = [
+user = [ ]
 
-["Pietje", "piet@ex.com"],
-["Santa", "santa@ex.com"]]
+piet = User.create( email: 'piet@ex.com', password: 'abcd1234' )
+santa = User.create( email: 'santa@ex.com', password: 'abcd1234' )
+mike = User.create( email: 'mike@ex.com', password: 'abcd1234' )
+
 
 user_reviews = {}
 
