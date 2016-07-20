@@ -140,6 +140,11 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (4.2.6)
       actionpack (= 4.2.6)
       activesupport (= 4.2.6)
@@ -188,6 +193,10 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    simple_token_authentication (1.14.0)
+      actionmailer (>= 3.2.6, < 6)
+      actionpack (>= 3.2.6, < 6)
+      devise (>= 3.2, < 6)
     slop (3.6.0)
     spring (1.7.2)
     spring-commands-rspec (1.0.4)
@@ -230,11 +239,13 @@ DEPENDENCIES
   jquery-rails
   pg (~> 0.15)
   rails (= 4.2.6)
+  rails_12factor
   rb-fsevent
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   shoulda-matchers
+  simple_token_authentication (~> 1.0)
   spring
   spring-commands-rspec
   terminal-notifier-guard
