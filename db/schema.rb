@@ -18,8 +18,7 @@ ActiveRecord::Schema.define(version: 20160719152952) do
 
   create_table "games", force: :cascade do |t|
     t.string   "title"
-    t.string   "description"
-    t.string   "text"
+    t.text     "description"
     t.integer  "review_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -29,9 +28,9 @@ ActiveRecord::Schema.define(version: 20160719152952) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "rating"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
     t.integer  "game_id"
   end
 
